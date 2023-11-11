@@ -1,7 +1,10 @@
 import express from 'express';
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config()
+import { MongoClient, ServerApiVersion } from 'mongodb';
 const app = express();
-const port = 3000; // Choose a port for your server
+//const port = 3000; // Choose a port for your server
 import hbs from "hbs";
 import path from "path";
 const __dirname = path.resolve();
@@ -11,7 +14,9 @@ import LogInCollection from "./mongodb.js";
 import ReviewCollection from "./review.js";
 import {engine} from 'express-handlebars';
 import bodyParser from "body-parser";
-
+//const uri = "mongodb+srv://sutirthasen:obito123@cluster0.yx7nmz5.mongodb.net/?retryWrites=true&w=majority";
+var uri = process.env.URI;
+var port = process.env.PORT
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 const __dir = path.dirname(fileURLToPath(import.meta.url));
@@ -209,8 +214,8 @@ app.post('/login', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 
-
-  mongoose.connect("mongodb://localhost:27017/brewery")
+  mongoose.connect(uri)
+  //mongoose.connect("mongodb://localhost:27017/brewery")
 .then(() =>{
     console.log("mongodb connected")
 })
