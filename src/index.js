@@ -15,7 +15,7 @@ import ReviewCollection from "./review.js";
 import {engine} from 'express-handlebars';
 import bodyParser from "body-parser";
 //const uri = "mongodb+srv://sutirthasen:obito123@cluster0.yx7nmz5.mongodb.net/?retryWrites=true&w=majority";
-var uri = process.env.URI;
+var uri = process.env.MONGODB_URI;
 var port = process.env.PORT
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
